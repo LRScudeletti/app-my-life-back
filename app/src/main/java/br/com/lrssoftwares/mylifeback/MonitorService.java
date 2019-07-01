@@ -22,24 +22,15 @@ public class MonitorService extends Service {
     Handler handler = new Handler();
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        iniciarServico();
-        handler.post(runnableCode);
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null && Objects.requireNonNull(intent.getAction()).equals("Monitor")) {
-            iniciarServico();
-        } else pararServico();
+            if (!servicoExecutando) {
+                ExibirNotificacao();
+                handler.post(runnableCode);
+                servicoExecutando = true;
+            }
+        }
         return START_STICKY;
-    }
-
-    @Override
-    public void onDestroy() {
-        servicoExecutando = false;
-        super.onDestroy();
     }
 
     @Override
@@ -47,17 +38,9 @@ public class MonitorService extends Service {
         return null;
     }
 
-    void iniciarServico() {
-        if (servicoExecutando) {
-            ExibirNotificacao();
-            return;
-        }
-        servicoExecutando = true;
-    }
-
-    void pararServico() {
-        stopForeground(true);
-        stopSelf();
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         servicoExecutando = false;
     }
 
@@ -100,9 +83,13 @@ public class MonitorService extends Service {
     private Runnable runnableCode = new Runnable() {
         @Override
         public void run() {
-            // ExibirNotificacao();
-            verificarProcessosRedesSociais();
-            handler.postDelayed(this, 10000);
+            if (servicoExecutando) {
+                ExibirNotificacao();
+                verificarProcessosRedesSociais();
+                handler.postDelayed(this, 10000);
+            } else {
+                handler.removeCallbacks(this);
+            }
         }
     };
 
