@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemCopiarConfiguracoes"
+        android:contentDescription="@string/configuracoes_sucesso"
+        android:icon="@drawable/copiar_icone"
+        android:orderInCategory="200"
+        android:title="@string/copiar_configuracoes"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Life Back</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- MENU HAMBURGER -->
+    <string name="menu_ajudenos">Help Us</string>
+    <string name="item_ajuda">Help</string>
+    <string name="item_compartilhar">Share</string>
+    <string name="item_avaliar">Rate</string>
+    <string name="item_contato">Contact</string>
+    <string name="item_sobre">About</string>
+
+    <!-- TABS -->
+    <string name="domingo">S</string>
+    <string name="segunda">M</string>
+    <string name="terca">T</string>
+    <string name="quarta">W</string>
+    <string name="quinta">T</string>
+    <string name="sexta">F</string>
+    <string name="sabado">S</string>
+
+    <!-- MENU -->
+    <string name="copiar_configuracoes">Copy Settings</string>
+
+    <!-- PRINCIPAL -->
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="twitter">Twitter</string>
+    <string name="minutos_dia">Minutes per day</string>
+    <string name="hint_minutos">60</string>
+    <string name="botao_cadastrar">Save</string>
+    <string name="configuracoes_sucesso">Settings saved successfully.</string>
+
+    <!-- VALIDAÇÕES GERAIS -->
+    <string name="preencha_campos">Please fill in all the fields.</string>
+    <string name="verificar_conexao">Check your internet connection.</string>
+
+    <!-- NOTIFICAÇÃO -->
+    <string name="monitor">Monitoring Enabled</string>
+    <string name="tempo_gasto">Time spent on social networks.</string>
+    <string name="parar_servico">Stop</string>
+
+    <!-- COMPARTILHAR -->
+    <string name="recomendo_aplicativo">I recommend this app</string>
+    <string name="selecione_opcao_compartilhar">Select an option</string>
+
+    <!-- CONTATO -->
+    <string name="tela_contato">Contact</string>
+    <string name="erro">Error:</string>
+    <string name="modelo_dispositivo">Device Model</string>
+    <string name="versao_android">Android version</string>
+    <string name="mensagem">Message</string>
+    <string name="mensagem_erro_titulo">An error has occurred</string>
+    <string name="mensagem_erro">Please inform the developer</string>
+    <string name="botao_enviar">Send</string>
+    <string name="botao_ok">OK</string>
+    <string name="botao_cancelar">Cancel</string>
+    <string name="aplicacao_email">Select the email application</string>
+    <string name="mensagem_sucesso">Message sent successfully, we will contact you. Thanks.</string>
+    <string name="sugestoes_reclamacoes">Your suggestions, complaints, compliments and doubts are always welcome!</string>
+
+    <!-- SOBRE -->
+    <string name="tela_sobre">About</string>
+    <string name="logo_descricao">Application logo</string>
+    <string name="versão">Version %1$s</string>
+    <string name="politica_privacidade">Privacy policy</string>
+    <string name="easter_egg_descricao">Easter egg</string>
+
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Life Back</string>
+    <string name="navigation_drawer_open">Abrir menu de navegação</string>
+    <string name="navigation_drawer_close">Fechar menu de navegação</string>
+    <string name="nav_header_desc">Cabeçalho de navegação</string>
+    <string name="action_settings">Configurações</string>
+
+    <!-- MENU HAMBURGER -->
+    <string name="menu_ajudenos">Ajude-nos</string>
+    <string name="item_ajuda">Ajuda</string>
+    <string name="item_compartilhar">Compartilhar</string>
+    <string name="item_avaliar">Avaliar</string>
+    <string name="item_contato">Contato</string>
+    <string name="item_sobre">Sobre</string>
+
+    <!-- TABS -->
+    <string name="domingo">D</string>
+    <string name="segunda">S</string>
+    <string name="terca">T</string>
+    <string name="quarta">Q</string>
+    <string name="quinta">Q</string>
+    <string name="sexta">S</string>
+    <string name="sabado">S</string>
+
+    <!-- MENU -->
+    <string name="copiar_configuracoes">Copiar Configurações</string>
+
+    <!-- PRINCIPAL -->
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="twitter">Twitter</string>
+    <string name="minutos_dia">Minutos por dia</string>
+    <string name="hint_minutos">60</string>
+    <string name="botao_cadastrar">Salvar</string>
+    <string name="configuracoes_sucesso">Configurações salvas com sucesso.</string>
+
+    <!-- VALIDAÇÕES GERAIS -->
+    <string name="preencha_campos">Por favor, preencha todos os campos.</string>
+    <string name="verificar_conexao">Verifique sua conexão com a internet</string>
+
+    <!-- NOTIFICAÇÃO -->
+    <string name="monitor">Monitoramento Ativado</string>
+    <string name="tempo_gasto">Tempo gasto em redes sociais.</string>
+    <string name="parar_servico">Parar</string>
+
+    <!-- COMPARTILHAR -->
+    <string name="recomendo_aplicativo">Recomendo esse aplicativo</string>
+    <string name="selecione_opcao_compartilhar">Selecione uma opção</string>
+
+    <!-- CONTATO-->
+    <string name="tela_contato">Contato</string>
+    <string name="erro">Erro:</string>
+    <string name="modelo_dispositivo">Modelo do dispositivo</string>
+    <string name="versao_android">Versão do android</string>
+    <string name="mensagem">Mensagem</string>
+    <string name="mensagem_erro_titulo">Ocorreu um erro</string>
+    <string name="mensagem_erro">Por favor, informe o desenvolvedor</string>
+    <string name="botao_enviar">Enviar</string>
+    <string name="botao_ok">OK</string>
+    <string name="botao_cancelar">Cancelar</string>
+    <string name="aplicacao_email">Selecione o aplicativo de e-mail</string>
+    <string name="mensagem_sucesso">Mensagem enviada com sucesso, entraremos em contato. Obrigado.</string>
+    <string name="sugestoes_reclamacoes">Suas sugestões, reclamações, elogios e dúvidas são sempre bem-vindas!</string>
+
+    <!-- SOBRE -->
+    <string name="tela_sobre">Sobre</string>
+    <string name="logo_descricao">Logo do aplicativo</string>
+    <string name="versão">Versão %1$s</string>
+    <string name="politica_privacidade">Política de privacidade</string>
+    <string name="easter_egg_descricao">Easter egg</string>
+
+</resources>
