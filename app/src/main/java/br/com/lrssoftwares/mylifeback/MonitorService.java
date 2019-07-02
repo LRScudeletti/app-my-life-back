@@ -17,15 +17,16 @@ import com.rvalerio.fgchecker.AppChecker;
 import java.util.Objects;
 
 public class MonitorService extends Service {
-    static final int NOTIFICATION_ID = 1;
     public static boolean servicoExecutando = false;
     Handler handler = new Handler();
+
+    int contador = 0;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null && Objects.requireNonNull(intent.getAction()).equals("Monitor")) {
             if (!servicoExecutando) {
-                ExibirNotificacao();
+                ExibirNotificacao(1, getString(R.string.monitor), getString(R.string.historico_detalhes));
                 handler.post(runnableCode);
                 servicoExecutando = true;
             }
@@ -44,9 +45,10 @@ public class MonitorService extends Service {
         servicoExecutando = false;
     }
 
-    private void ExibirNotificacao() {
+    private void ExibirNotificacao(int notificationId, String titulo, String mensagem) {
         try {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder notificationBuilder;
 
             String idCanal = "1";
             String nomeCanal = "Monitor";
@@ -57,15 +59,19 @@ public class MonitorService extends Service {
             }
 
             Intent intentHide = new Intent(this, NotificacaoReceiver.class);
-
+            intentHide.putExtra("notificationId", notificationId);
             PendingIntent removerNotificacao = PendingIntent.getBroadcast(this, (int) System.currentTimeMillis(), intentHide, PendingIntent.FLAG_CANCEL_CURRENT);
 
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), idCanal)
+            notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), idCanal)
                     .setSmallIcon(R.drawable.notificacao_icone)
-                    .setContentTitle(getString(R.string.monitor))
-                    .addAction(R.drawable.fechar_icone, getString(R.string.parar_servico), removerNotificacao)
+                    .setContentTitle(titulo)
+                    .addAction(notificationId == 1 ? R.drawable.fechar_icone : R.drawable.ok_icone,
+                            notificationId == 1 ? getString(R.string.parar_servico) : getString(R.string.ok_notificação),
+                            removerNotificacao)
                     .setColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
-                    .setContentText(getString(R.string.tempo_gasto));
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(mensagem))
+                    .setContentText(mensagem)
+                    .setOngoing(notificationId == 1);
 
             //Intent intent = new Intent();
 
@@ -74,7 +80,9 @@ public class MonitorService extends Service {
             //PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
             //mBuilder.setContentIntent(resultPendingIntent);
 
-            startForeground(NOTIFICATION_ID, mBuilder.build());
+            // startForeground(notificationId, notificationBuilder.build());
+
+            notificationManager.notify(notificationId, notificationBuilder.build());
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(getApplicationContext(), erro);
         }
@@ -84,7 +92,6 @@ public class MonitorService extends Service {
         @Override
         public void run() {
             if (servicoExecutando) {
-                ExibirNotificacao();
                 verificarProcessosRedesSociais();
                 handler.postDelayed(this, 10000);
             } else {
@@ -96,5 +103,28 @@ public class MonitorService extends Service {
     private void verificarProcessosRedesSociais() {
         AppChecker appChecker = new AppChecker();
         String packageName = appChecker.getForegroundApp(getApplicationContext());
+
+        switch (packageName) {
+            case "com.facebook.katana":
+            case "com.facebook.lite": {
+                contador++;
+                break;
+            }
+            case "com.instagram.android": {
+                break;
+            }
+            case "com.linkedin.android":
+            case "com.linkedin.android.lite": {
+                break;
+            }
+            case "com.twitter.android":
+            case "com.twitter.android.lite": {
+                break;
+            }
+        }
+
+        if (contador == 2) {
+            ExibirNotificacao(2, getString(R.string.notificacao_alerta, getString(R.string.facebook)), getString(R.string.tempo_excedido));
+        }
     }
 }

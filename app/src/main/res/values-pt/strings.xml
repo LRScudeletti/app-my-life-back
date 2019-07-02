@@ -31,19 +31,25 @@
     <string name="instagram">Instagram</string>
     <string name="linkedin">Linkedin</string>
     <string name="twitter">Twitter</string>
-    <string name="minutos_dia">Minutos por dia</string>
-    <string name="hint_minutos">60</string>
+    <string name="alerta">Alerta (m)</string>
+    <string name="hint_minutos">ex. 60</string>
     <string name="botao_cadastrar">Salvar</string>
     <string name="configuracoes_sucesso">Configurações salvas com sucesso.</string>
+    <string name="instrucoes">Ative as redes sociais que deseja monitorar e se necessário configure um alerta para ser notificado quando o tempo for ultrapassado.</string>
 
     <!-- VALIDAÇÕES GERAIS -->
     <string name="preencha_campos">Por favor, preencha todos os campos.</string>
     <string name="verificar_conexao">Verifique sua conexão com a internet</string>
+    <string name="habilitar_permissao">Para continuar, é necessário dar permissão de acesso ao app. Na tela que abrir, selecione o aplicativo My Life Back e habilite a permissão.</string>
+    <string name="permissao_cancelada">Para continuar, é necessário habilitar a permissão.</string>
 
     <!-- NOTIFICAÇÃO -->
     <string name="monitor">Monitoramento Ativado</string>
-    <string name="tempo_gasto">Tempo gasto em redes sociais.</string>
+    <string name="notificacao_alerta">Alerta do %1$s</string>
+    <string name="historico_detalhes">Acesse o histórico do app para mais detalhes.</string>
     <string name="parar_servico">Parar</string>
+    <string name="ok_notificação">OK</string>
+    <string name="tempo_excedido">O tempo de uso configurado foi excedido.</string>
 
     <!-- COMPARTILHAR -->
     <string name="recomendo_aplicativo">Recomendo esse aplicativo</string>

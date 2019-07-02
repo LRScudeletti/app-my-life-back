@@ -4,10 +4,6 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/itemAjuda"
-        android:icon="@drawable/ajuda_icone"
-        android:title="@string/item_ajuda" />
-    <item
         android:id="@+id/itemCompartilhar"
         android:icon="@drawable/compartilhar_icone"
         android:title="@string/item_compartilhar" />

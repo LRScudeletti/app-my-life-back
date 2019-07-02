@@ -31,19 +31,25 @@
     <string name="instagram">Instagram</string>
     <string name="linkedin">Linkedin</string>
     <string name="twitter">Twitter</string>
-    <string name="minutos_dia">Minutes per day</string>
-    <string name="hint_minutos">60</string>
+    <string name="alerta">Alert (m)</string>
+    <string name="hint_minutos">e.g. 60</string>
     <string name="botao_cadastrar">Save</string>
     <string name="configuracoes_sucesso">Settings saved successfully.</string>
+    <string name="instrucoes">Activate the social networks you want to monitor and if necessary set an alert to be notified when the time is exceeded.</string>
 
     <!-- VALIDAÇÕES GERAIS -->
     <string name="preencha_campos">Please fill in all the fields.</string>
     <string name="verificar_conexao">Check your internet connection.</string>
+    <string name="habilitar_permissao">To continue, you must give the app access permission. On the screen that opens, select the My Life Back application and enable the permission.</string>
+    <string name="permissao_cancelada">To continue, you must enable the permission.</string>
 
     <!-- NOTIFICAÇÃO -->
     <string name="monitor">Monitoring Enabled</string>
-    <string name="tempo_gasto">Time spent on social networks.</string>
+    <string name="notificacao_alerta">%1$s Alert</string>
+    <string name="historico_detalhes">Visit app history for more details.</string>
     <string name="parar_servico">Stop</string>
+    <string name="ok_notificação">OK</string>
+    <string name="tempo_excedido">The configured usage time has been exceeded.</string>
 
     <!-- COMPARTILHAR -->
     <string name="recomendo_aplicativo">I recommend this app</string>

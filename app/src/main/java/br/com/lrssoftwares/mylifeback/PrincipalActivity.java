@@ -2,9 +2,7 @@ package br.com.lrssoftwares.mylifeback;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -24,8 +22,6 @@ import android.view.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.rvalerio.fgchecker.Utils.hasUsageStatsPermission;
-
 public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +40,6 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         navigationViewPrincipal.setNavigationItemSelectedListener(this);
 
         carregarTabs();
-
-        verificarPermissao();
     }
 
     @Override
@@ -78,8 +72,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.itemAjuda) {
-        } else if (id == R.id.itemCompartilhar) {
+        if (id == R.id.itemCompartilhar) {
             String appPackageName = getPackageName();
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -198,12 +191,6 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         @Override
         public int getItemPosition(@NonNull Object object) {
             return POSITION_NONE;
-        }
-    }
-
-    private void verificarPermissao() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !hasUsageStatsPermission(this)) {
-            startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
         }
     }
 }
