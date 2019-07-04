@@ -2,19 +2,9 @@ package br.com.lrssoftwares.mylifeback;
 
 class RedesSociaisClass {
     private int id;
-    private String processo;
-    private double tempo;
+    private int dia;
+    private String tempo;
     private int ativo;
-
-    RedesSociaisClass() {
-    }
-
-    RedesSociaisClass(int id, String processo, double tempo, int ativo) {
-        this.id = id;
-        this.processo = processo;
-        this.tempo = tempo;
-        this.ativo = ativo;
-    }
 
     int getId() {
         return id;
@@ -24,19 +14,19 @@ class RedesSociaisClass {
         this.id = id;
     }
 
-    String getProcesso() {
-        return processo;
+    int getDia() {
+        return dia;
     }
 
-    void setProcesso(String processo) {
-        this.processo = processo;
+    void setDia(int dia) {
+        this.dia = dia;
     }
 
-    double getTempo() {
+    String getTempo() {
         return tempo;
     }
 
-    void setTempo(double tempo) {
+    void setTempo(String tempo) {
         this.tempo = tempo;
     }
 

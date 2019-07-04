@@ -6,13 +6,22 @@
     <string name="nav_header_desc">Cabeçalho de navegação</string>
     <string name="action_settings">Configurações</string>
 
-    <!-- MENU HAMBURGER -->
+    <!-- MENU DRAWER -->
     <string name="menu_ajudenos">Ajude-nos</string>
     <string name="item_ajuda">Ajuda</string>
     <string name="item_compartilhar">Compartilhar</string>
     <string name="item_avaliar">Avaliar</string>
     <string name="item_contato">Contato</string>
     <string name="item_sobre">Sobre</string>
+
+    <!-- PRINCIPAL -->
+    <string name="bem_vindo">Bem-vindo(a) ao My Life Back</string>
+    <string name="configurar_monitoramento">Configurações</string>
+    <string name="visualizar_historico">Visualizar Histórico</string>
+
+    <!-- MENU OPÇÕES-->
+    <string name="copiar_configuracoes">Copiar Configurações</string>
+    <string name="copiar_configuracoes_para">Copiar as configurações</string>
 
     <!-- TABS -->
     <string name="domingo">D</string>
@@ -23,10 +32,8 @@
     <string name="sexta">S</string>
     <string name="sabado">S</string>
 
-    <!-- MENU -->
-    <string name="copiar_configuracoes">Copiar Configurações</string>
-
-    <!-- PRINCIPAL -->
+    <!-- CONFIGURAR MONITORAMENTO -->
+    <string name="tela_monitoramento">Monitoramento</string>
     <string name="facebook">Facebook</string>
     <string name="instagram">Instagram</string>
     <string name="linkedin">Linkedin</string>
@@ -37,10 +44,13 @@
     <string name="configuracoes_sucesso">Configurações salvas com sucesso.</string>
     <string name="instrucoes">Ative as redes sociais que deseja monitorar e se necessário configure um alerta para ser notificado quando o tempo for ultrapassado.</string>
 
+    <!-- VISUALIZAR HISTORICO -->
+    <string name="tela_historico">Histórico</string>
+
     <!-- VALIDAÇÕES GERAIS -->
     <string name="preencha_campos">Por favor, preencha todos os campos.</string>
     <string name="verificar_conexao">Verifique sua conexão com a internet</string>
-    <string name="habilitar_permissao">Para continuar, é necessário dar permissão de acesso ao app. Na tela que abrir, selecione o aplicativo My Life Back e habilite a permissão.</string>
+    <string name="habilitar_permissao">Para continuar, é necessário dar permissão de acesso ao aplicativo. Na tela que abrir, selecione o aplicativo My Life Back e habilite a permissão.</string>
     <string name="permissao_cancelada">Para continuar, é necessário habilitar a permissão.</string>
 
     <!-- NOTIFICAÇÃO -->

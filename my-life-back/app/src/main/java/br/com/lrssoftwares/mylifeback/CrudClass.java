@@ -1,9 +1,8 @@
-package br.com.lrssoftwares.mylifeback;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,7 @@ class CrudClass {
         valores.put("tempo", redesSociaisClass.getTempo());
         valores.put("ativo", redesSociaisClass.getAtivo());
 
-        sqLiteDatabase.update("redessociais", valores, "id = ? and dia = ?", new String[]{"" + redesSociaisClass.getId(), "" + redesSociaisClass.getDia()});
+        sqLiteDatabase.update("redessociais", valores, "id = ? and dia = ?", new String[]{"" + redesSociaisClass.getId() , "" + redesSociaisClass.getDia()});
         sqLiteDatabase.close();
     }
 }

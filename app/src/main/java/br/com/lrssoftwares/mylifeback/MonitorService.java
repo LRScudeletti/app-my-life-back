@@ -4,7 +4,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -80,9 +79,10 @@ public class MonitorService extends Service {
             //PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
             //mBuilder.setContentIntent(resultPendingIntent);
 
-            // startForeground(notificationId, notificationBuilder.build());
-
-            notificationManager.notify(notificationId, notificationBuilder.build());
+            if (notificationId == 1)
+                startForeground(notificationId, notificationBuilder.build());
+            else
+                notificationManager.notify(notificationId, notificationBuilder.build());
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(getApplicationContext(), erro);
         }
