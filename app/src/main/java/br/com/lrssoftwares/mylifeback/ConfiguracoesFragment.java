@@ -1,5 +1,6 @@
 package br.com.lrssoftwares.mylifeback;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,8 +18,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -30,6 +35,7 @@ public class ConfiguracoesFragment extends Fragment {
 
     private CrudClass crudClass;
     int dia;
+    int diaSelecionadoSpinner = 0;
     private boolean controlarOnResume = false;
 
     Switch swtFacebook;
@@ -52,7 +58,7 @@ public class ConfiguracoesFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_monitoramento, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_configuracoes, container, false);
 
         dia = Objects.requireNonNull(getArguments()).getInt("dia", 1);
 
@@ -133,7 +139,7 @@ public class ConfiguracoesFragment extends Fragment {
         }
     }
 
-    private void carregarDados() {
+    public void carregarDados() {
         try {
             List<RedesSociaisClass> listarRedesSociais = crudClass.listarRedesSociais(dia);
 
@@ -208,25 +214,124 @@ public class ConfiguracoesFragment extends Fragment {
     }
 
     private void PopupCopiarConfiguracoes() {
+        AlertDialog.Builder dialogoCopiar = new UtilidadesClass().CabecalhoDialogo(getActivity(), getString(R.string.copiar_configuracoes_para));
+
+        LayoutInflater inflaterCopiar = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        @SuppressLint("InflateParams")
+        View vLayoutDialogo = inflaterCopiar.inflate(R.layout.dialog_copiar_configuracoes, null);
+        Spinner spDias = vLayoutDialogo.findViewById(R.id.spDias);
+
+        ArrayAdapter<CharSequence> adapterDias = ArrayAdapter.createFromResource(Objects.requireNonNull(getContext()), R.array.array_dias, android.R.layout.simple_spinner_item);
+        adapterDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDias.setAdapter(adapterDias);
+        spDias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View view, int position, long arg3) {
+                switch (spDias.getSelectedItem().toString()) {
+                    case "Todos os dias":
+                    case "Every day":
+                        diaSelecionadoSpinner = 0;
+                        break;
+
+                    case "Domingo":
+                    case "Sunday":
+                        diaSelecionadoSpinner = 1;
+                        break;
+
+                    case "Segunda-feira":
+                    case "Monday":
+                        diaSelecionadoSpinner = 2;
+                        break;
+
+                    case "Terça-feira":
+                    case "Tuesday":
+                        diaSelecionadoSpinner = 3;
+                        break;
+
+                    case "Quarta-feira":
+                    case "Wednesday":
+                        diaSelecionadoSpinner = 4;
+                        break;
+
+                    case "Quinta-feira":
+                    case "Thursday":
+                        diaSelecionadoSpinner = 5;
+                        break;
+
+                    case "Sexta-feira":
+                    case "Friday":
+                        diaSelecionadoSpinner = 6;
+                        break;
+
+                    case "Sábado":
+                    case "Saturday":
+                        diaSelecionadoSpinner = 7;
+                        break;
+
+                    default:
+                        diaSelecionadoSpinner = 0;
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+        dialogoCopiar.setView(vLayoutDialogo)
+                .setPositiveButton(getString(R.string.botao_copiar), (dialog, id) -> copiarConfiguracoes())
+                .setNegativeButton(getString(R.string.botao_cancelar), (dialog, id) -> {
+
+                });
+
+        dialogoCopiar.create();
+        dialogoCopiar.show();
+    }
+
+    private void copiarConfiguracoes() {
         try {
-            AlertDialog.Builder dialogoCopiar = new UtilidadesClass().CabecalhoDialogo(getActivity(), getString(R.string.copiar_configuracoes_para));
+            RedesSociaisClass redesSociaisClass = new RedesSociaisClass();
 
-            LayoutInflater inflaterCopiar = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View vLayoutDialogo = inflaterCopiar.inflate(R.layout.dialog_copiar_configuracoes, null);
+            redesSociaisClass.setDia(diaSelecionadoSpinner);
 
-            dialogoCopiar.setView(vLayoutDialogo)
-                    .setPositiveButton(getString(R.string.botao_ok), (dialog, id) -> {
+            for (int i = 1; i <= 4; i++) {
+                switch (i) {
+                    case 1:
+                        redesSociaisClass.setId(1);
+                        redesSociaisClass.setTempo(txtAlertaFacebook.getText().toString());
+                        redesSociaisClass.setAtivo(swtFacebook.isChecked() ? 1 : 0);
+                        break;
+                    case 2:
+                        redesSociaisClass.setId(2);
+                        redesSociaisClass.setTempo(txtAlertaInstagram.getText().toString());
+                        redesSociaisClass.setAtivo(swtInstagram.isChecked() ? 1 : 0);
+                        break;
+                    case 3:
+                        redesSociaisClass.setId(3);
+                        redesSociaisClass.setTempo(txtAlertaLinkedin.getText().toString());
+                        redesSociaisClass.setAtivo(swtLinkedin.isChecked() ? 1 : 0);
+                        break;
+                    case 4:
+                        redesSociaisClass.setId(4);
+                        redesSociaisClass.setTempo(txtAlertaTwitter.getText().toString());
+                        redesSociaisClass.setAtivo(swtTwitter.isChecked() ? 1 : 0);
+                        break;
+                }
+                crudClass.atualizarRedeSocial(redesSociaisClass);
+            }
 
-                    })
-                    .setNegativeButton(getString(R.string.botao_cancelar), (dialog, id) -> {
+            ViewPager vpPrincipal = Objects.requireNonNull(getActivity()).findViewById(R.id.vpPrincipal);
+            vpPrincipal.setCurrentItem(diaSelecionadoSpinner - 1);
+            Objects.requireNonNull(vpPrincipal.getAdapter()).notifyDataSetChanged();
 
-                    });
+            Snackbar.make(Objects.requireNonNull(getView()), getString(R.string.configuracoes_copiadas_sucesso), Snackbar.LENGTH_LONG).setAction("", null).show();
 
-            dialogoCopiar.create();
-            dialogoCopiar.show();
-
-        } catch (Exception erro) {
-
+        } catch (
+                Exception erro) {
+            new UtilidadesClass().enviarMensagemContato(getActivity(), erro);
         }
     }
 }

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:elevation="3dp"
+        app:tabMode="fixed"
         app:tabIndicatorColor="@color/colorWhite"
         app:tabSelectedTextColor="@color/colorWhite"
         app:tabTextColor="@color/colorWhiteOpacity"

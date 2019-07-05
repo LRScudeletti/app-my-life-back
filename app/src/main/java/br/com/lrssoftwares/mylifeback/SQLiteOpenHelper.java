@@ -61,7 +61,7 @@ class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         sdBaseDados.execSQL("insert into redessociais values (1, 'Facebook', 7, '', 0);");
         sdBaseDados.execSQL("insert into redessociais values (2, 'Instagram', 7, '', 0);");
         sdBaseDados.execSQL("insert into redessociais values (3, 'Linkedin', 7, '', 0);");
-        sdBaseDados.execSQL("insert into redessociais values (24, 'Twitter', 7, '', 0);");
+        sdBaseDados.execSQL("insert into redessociais values (4, 'Twitter', 7, '', 0);");
     }
 
     @Override

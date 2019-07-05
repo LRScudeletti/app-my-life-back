@@ -8,8 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +18,10 @@ public class ConfiguracoesTabsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracoes);
 
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle(R.string.tela_monitoramento);
+            getSupportActionBar().setTitle(R.string.tela_configuracoes);
             getSupportActionBar().setElevation(0);
         }
 
@@ -89,10 +87,10 @@ public class ConfiguracoesTabsActivity extends AppCompatActivity {
         sabadoFragmento.setArguments(argsSabado);
         vpAdapterPrincipal.addFragment(sabadoFragmento, getString(R.string.sabado));
 
+        viewPagerPrincipal.setAdapter(vpAdapterPrincipal);
+
         TabLayout tabLayoutPrincipal = findViewById(R.id.tlPrincipal);
         tabLayoutPrincipal.setupWithViewPager(viewPagerPrincipal);
-
-        viewPagerPrincipal.setAdapter(vpAdapterPrincipal);
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -109,6 +107,14 @@ public class ConfiguracoesTabsActivity extends AppCompatActivity {
         }
 
         @Override
+        public int getItemPosition(@NonNull Object objeto) {
+            if (objeto instanceof ConfiguracoesFragment) {
+                ((ConfiguracoesFragment)objeto).carregarDados();
+            }
+            return super.getItemPosition(objeto);
+        }
+
+        @Override
         public int getCount() {
             return listaFragmentos.size();
         }
@@ -121,11 +127,6 @@ public class ConfiguracoesTabsActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return listaTitulos.get(position);
-        }
-
-        @Override
-        public int getItemPosition(@NonNull Object object) {
-            return POSITION_NONE;
         }
     }
 }

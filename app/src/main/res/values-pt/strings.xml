@@ -21,7 +21,9 @@
 
     <!-- MENU OPÇÕES-->
     <string name="copiar_configuracoes">Copiar Configurações</string>
-    <string name="copiar_configuracoes_para">Copiar as configurações</string>
+    <string name="copiar_configuracoes_para">Copiar as configurações para</string>
+    <string name="botao_copiar">Copiar</string>
+    <string name="configuracoes_copiadas_sucesso">Configurações copiadas com sucesso.</string>
 
     <!-- TABS -->
     <string name="domingo">D</string>
@@ -32,8 +34,18 @@
     <string name="sexta">S</string>
     <string name="sabado">S</string>
 
+    <string-array name="array_dias">
+        <item>Domingo</item>
+        <item>Segunda-feira</item>
+        <item>Terça-feira</item>
+        <item>Quarta-feira</item>
+        <item>Quinta-feira</item>
+        <item>Sexta-feira</item>
+        <item>Sábado</item>
+    </string-array>
+
     <!-- CONFIGURAR MONITORAMENTO -->
-    <string name="tela_monitoramento">Monitoramento</string>
+    <string name="tela_configuracoes">Configurações</string>
     <string name="facebook">Facebook</string>
     <string name="instagram">Instagram</string>
     <string name="linkedin">Linkedin</string>

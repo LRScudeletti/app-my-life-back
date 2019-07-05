@@ -16,7 +16,6 @@ class CrudClass {
         baseDadosSQLiteOpenHelper = new SQLiteOpenHelper(contexto);
     }
 
-    // Listar dados da tabela redessociais
     List<RedesSociaisClass> listarRedesSociais(int dia) {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
@@ -46,7 +45,6 @@ class CrudClass {
     }
     //endregion
 
-    // Atualizar dados da tabela redessociais
     void atualizarRedeSocial(RedesSociaisClass redesSociaisClass) {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
