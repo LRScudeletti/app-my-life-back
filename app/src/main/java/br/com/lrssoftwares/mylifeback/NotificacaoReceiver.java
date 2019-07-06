@@ -13,6 +13,10 @@ public class NotificacaoReceiver extends BroadcastReceiver {
 
         // Se o id for igual a 1, remove a notificação e para o serviço.
         if (notificationId == 1) {
+            // Desativa alertas
+            CrudClass crudClass = new CrudClass(context);
+            crudClass.desativarAlerta();
+
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             manager.cancel(notificationId);
 

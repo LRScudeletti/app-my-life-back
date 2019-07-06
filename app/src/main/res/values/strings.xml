@@ -29,7 +29,8 @@
     <string name="hint_minutos">e.g. 60</string>
     <string name="botao_cadastrar">Save</string>
     <string name="configuracoes_sucesso">Settings saved successfully.</string>
-    <string name="instrucoes">Activate the social networks you want to monitor and if necessary set an alert to be notified when the time is exceeded.</string>
+    <string name="instrucoes">Activate the social networks you want to monitor and if necessary set an daily alert to be notified when the time is exceeded.</string>
+    <string name="alerta_dica">* Please report the alert in minutes.</string>
 
     <!-- VISUALIZAR HISTORICO -->
     <string name="tela_historico">History</string>

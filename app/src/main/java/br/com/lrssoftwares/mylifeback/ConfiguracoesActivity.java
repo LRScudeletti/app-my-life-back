@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -80,7 +79,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 dialogPermissao.create();
                 dialogPermissao.show();
             } else if (hasUsageStatsPermission(this)) {
-                atualizarDados(v);
+                atualizarDados();
 
                 if (verificarChecks())
                     chamarServico();
@@ -101,7 +100,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         if (hasUsageStatsPermission(this) && controlarOnResume) {
             controlarOnResume = false;
 
-            // atualizarDados();
+            atualizarDados();
 
             if (verificarChecks())
                 chamarServico();
@@ -130,7 +129,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         }
     }
 
-    private void atualizarDados(View view) {
+    private void atualizarDados() {
         try {
             RedesSociaisClass redesSociaisClass = new RedesSociaisClass();
 
@@ -160,7 +159,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 crudClass.atualizarRedeSocial(redesSociaisClass);
             }
 
-            Snackbar.make(view, getString(R.string.configuracoes_sucesso), Snackbar.LENGTH_LONG).setAction("", null).show();
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.configuracoes_sucesso), Snackbar.LENGTH_LONG).setAction("", null).show();
 
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(this, erro);

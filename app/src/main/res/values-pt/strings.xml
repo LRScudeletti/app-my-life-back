@@ -29,7 +29,8 @@
     <string name="hint_minutos">ex. 60</string>
     <string name="botao_cadastrar">Salvar</string>
     <string name="configuracoes_sucesso">Configurações salvas com sucesso.</string>
-    <string name="instrucoes">Ative as redes sociais que deseja monitorar e se necessário configure um alerta para ser notificado quando o tempo for ultrapassado.</string>
+    <string name="instrucoes">Ative as redes sociais que deseja monitorar e se necessário configure um alerta diário para ser notificado quando o tempo for ultrapassado.</string>
+    <string name="alerta_dica">* Por favor, informe o alerta em minutos.</string>
 
     <!-- VISUALIZAR HISTORICO -->
     <string name="tela_historico">Histórico</string>

@@ -1,87 +1,77 @@
 package br.com.lrssoftwares.mylifeback;
 
-import java.util.Date;
-
 class RedesSociaisClass {
     private int id;
-    private String nome;
-    private Date dia;
+    private String diaAtual;
     private int hoje;
     private int mes;
     private int total;
     private int alertaAtivo;
     private int tempoAlerta;
-    private Date ultimoAlerta;
 
-    public int getId() {
+    private int notificouHoje;
+
+    int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    String getDiaAtual() {
+        return diaAtual;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    void setDiaAtual(String diaAtual) {
+        this.diaAtual = diaAtual;
     }
 
-    public Date getDia() {
-        return dia;
-    }
-
-    public void setDia(Date dia) {
-        this.dia = dia;
-    }
-
-    public int getHoje() {
+    int getHoje() {
         return hoje;
     }
 
-    public void setHoje(int hoje) {
+    void setHoje(int hoje) {
         this.hoje = hoje;
     }
 
-    public int getMes() {
+    int getMes() {
         return mes;
     }
 
-    public void setMes(int mes) {
+    void setMes(int mes) {
         this.mes = mes;
     }
 
-    public int getTotal() {
+    int getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    void setTotal(int total) {
         this.total = total;
     }
 
-    public int getAlertaAtivo() {
+    int getAlertaAtivo() {
         return alertaAtivo;
     }
 
-    public void setAlertaAtivo(int alertaAtivo) {
+    void setAlertaAtivo(int alertaAtivo) {
         this.alertaAtivo = alertaAtivo;
     }
 
-    public int getTempoAlerta() {
+    int getTempoAlerta() {
         return tempoAlerta;
     }
 
-    public void setTempoAlerta(int tempoAlerta) {
+    void setTempoAlerta(int tempoAlerta) {
         this.tempoAlerta = tempoAlerta;
     }
 
-    public Date getUltimoAlerta() {
-        return ultimoAlerta;
+    int getNotificouHoje() {
+        return notificouHoje;
     }
 
-    public void setUltimoAlerta(Date ultimoAlerta) {
-        this.ultimoAlerta = ultimoAlerta;
+    void setNotificouHoje(int notificouHoje) {
+        this.notificouHoje = notificouHoje;
     }
 }

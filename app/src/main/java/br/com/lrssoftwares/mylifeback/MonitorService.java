@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.rvalerio.fgchecker.AppChecker;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -108,35 +109,83 @@ public class MonitorService extends Service {
 
             CrudClass crudClass = new CrudClass(getApplication());
             List<RedesSociaisClass> redesSociaisClass = crudClass.listarRedesSociais();
+            RedesSociaisClass redesSociaisClassAtualizar = new RedesSociaisClass();
+
+            // verificarData(redesSociaisClass);
 
             switch (packageName) {
                 case "com.facebook.katana":
                 case "com.facebook.lite": {
+                    redesSociaisClassAtualizar.setId(1);
+                    redesSociaisClassAtualizar.setHoje(redesSociaisClass.get(0).getHoje() + intervalo);
+                    redesSociaisClassAtualizar.setMes(redesSociaisClass.get(0).getMes() + intervalo);
+                    redesSociaisClassAtualizar.setTotal(redesSociaisClass.get(0).getTotal() + intervalo);
 
-                    ExibirNotificacao(2, getString(R.string.notificacao_alerta, getString(R.string.facebook)), getString(R.string.tempo_excedido));
-
+                    if (redesSociaisClass.get(0).getNotificouHoje() == 0 && redesSociaisClass.get(0).getAlertaAtivo() == 1 && redesSociaisClass.get(0).getHoje() > (redesSociaisClass.get(0).getTempoAlerta() * 60)) {
+                        ExibirNotificacao(2, getString(R.string.notificacao_alerta, getString(R.string.facebook)), getString(R.string.tempo_excedido));
+                        redesSociaisClassAtualizar.setNotificouHoje(1);
+                    }
                     break;
                 }
                 case "com.instagram.android": {
+                    redesSociaisClassAtualizar.setId(2);
+                    redesSociaisClassAtualizar.setHoje(redesSociaisClass.get(1).getHoje() + intervalo);
+                    redesSociaisClassAtualizar.setMes(redesSociaisClass.get(1).getMes() + intervalo);
+                    redesSociaisClassAtualizar.setTotal(redesSociaisClass.get(1).getTotal() + intervalo);
 
+                    if (redesSociaisClass.get(1).getNotificouHoje() == 0 && redesSociaisClass.get(1).getAlertaAtivo() == 1 && redesSociaisClass.get(1).getHoje() > (redesSociaisClass.get(1).getTempoAlerta() * 60)) {
+                        ExibirNotificacao(3, getString(R.string.notificacao_alerta, getString(R.string.instagram)), getString(R.string.tempo_excedido));
+                        redesSociaisClassAtualizar.setNotificouHoje(1);
+                    }
                     break;
                 }
                 case "com.linkedin.android":
                 case "com.linkedin.android.lite": {
+                    redesSociaisClassAtualizar.setId(3);
+                    redesSociaisClassAtualizar.setHoje(redesSociaisClass.get(2).getHoje() + intervalo);
+                    redesSociaisClassAtualizar.setMes(redesSociaisClass.get(2).getMes() + intervalo);
+                    redesSociaisClassAtualizar.setTotal(redesSociaisClass.get(2).getTotal() + intervalo);
 
+                    if (redesSociaisClass.get(2).getNotificouHoje() == 0 && redesSociaisClass.get(2).getAlertaAtivo() == 1 && redesSociaisClass.get(2).getHoje() > (redesSociaisClass.get(2).getTempoAlerta() * 60)) {
+                        ExibirNotificacao(3, getString(R.string.notificacao_alerta, getString(R.string.linkedin)), getString(R.string.tempo_excedido));
+                        redesSociaisClassAtualizar.setNotificouHoje(1);
+                    }
                     break;
                 }
                 case "com.twitter.android":
                 case "com.twitter.android.lite": {
-                    //tempoClassNovo.setId(4);
-                    //tempoClassNovo.setHoje(tempoClass.get(0).getHoje() + intervalo);
+                    redesSociaisClassAtualizar.setId(4);
+                    redesSociaisClassAtualizar.setHoje(redesSociaisClass.get(3).getHoje() + intervalo);
+                    redesSociaisClassAtualizar.setMes(redesSociaisClass.get(3).getMes() + intervalo);
+                    redesSociaisClassAtualizar.setTotal(redesSociaisClass.get(3).getTotal() + intervalo);
 
+                    if (redesSociaisClass.get(3).getNotificouHoje() == 0 && redesSociaisClass.get(3).getAlertaAtivo() == 1 && redesSociaisClass.get(3).getHoje() > (redesSociaisClass.get(3).getTempoAlerta() * 60)) {
+                        ExibirNotificacao(4, getString(R.string.notificacao_alerta, getString(R.string.twitter)), getString(R.string.tempo_excedido));
+                        redesSociaisClassAtualizar.setNotificouHoje(1);
+                    }
                     break;
                 }
             }
 
+            crudClass.atualizarRedeSocialTempo(redesSociaisClassAtualizar);
+
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(getApplicationContext(), erro);
+        }
+    }
+
+    private void verificarData(List<RedesSociaisClass> redesSociaisClass) {
+        try {
+            Calendar dia = Calendar.getInstance();
+
+            if (!dia.toString().equals(redesSociaisClass.get(0).getDiaAtual())) {
+                CrudClass crudClass = new CrudClass(getApplication());
+                crudClass.atualizarDataHoje(dia.toString());
+            }
+
+        } catch (Exception erro) {
+            new UtilidadesClass().enviarMensagemContato(getApplicationContext(), erro);
+
         }
     }
 }

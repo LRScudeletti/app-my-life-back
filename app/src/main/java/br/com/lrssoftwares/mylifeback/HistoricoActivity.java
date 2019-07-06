@@ -28,6 +28,8 @@ public class HistoricoActivity extends AppCompatActivity {
     TextView txtTotalMes;
     TextView txtTotalGeral;
 
+    boolean controlarOnResume = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,57 +74,55 @@ public class HistoricoActivity extends AppCompatActivity {
         try {
             CrudClass crudClass = new CrudClass(this);
 
-            List<RedesSociaisClass> tempoClass = crudClass.listarRedesSociais();
+            List<RedesSociaisClass> redesSociaisClass = crudClass.listarRedesSociais();
 
             int totalHoje = 0;
             int totalMes = 0;
             int totalGeral = 0;
 
-            for (int i = 0; i < tempoClass.size(); i++) {
-                if (tempoClass.get(i).getTotal() == 0) {
-                    switch (tempoClass.get(i).getId()) {
-                        case 1:
-                            txtHojeFacebook.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getHoje() / 60), String.valueOf(tempoClass.get(i).getHoje() % 60)));
-                            txtMesFacebook.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getMes() / 60), String.valueOf(tempoClass.get(i).getMes() % 60)));
-                            txtTotalFacebook.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getTotal() / 60), String.valueOf(tempoClass.get(i).getTotal() % 60)));
-                            totalHoje = totalHoje + tempoClass.get(i).getHoje();
-                            totalMes = totalMes + tempoClass.get(i).getMes();
-                            totalGeral = totalGeral + tempoClass.get(i).getTotal();
-                            break;
+            for (int i = 0; i < redesSociaisClass.size(); i++) {
+                switch (redesSociaisClass.get(i).getId()) {
+                    case 1:
+                        txtHojeFacebook.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getHoje() / 3600), String.valueOf((redesSociaisClass.get(i).getHoje() % 3600) / 60)));
+                        txtMesFacebook.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getMes() / 3600), String.valueOf((redesSociaisClass.get(i).getMes() % 3600) / 60)));
+                        txtTotalFacebook.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getTotal() / 3600), String.valueOf((redesSociaisClass.get(i).getTotal() % 3600) / 60)));
+                        totalHoje = totalHoje + redesSociaisClass.get(i).getHoje();
+                        totalMes = totalMes + redesSociaisClass.get(i).getMes();
+                        totalGeral = totalGeral + redesSociaisClass.get(i).getTotal();
+                        break;
 
-                        case 2:
-                            txtHojeInstagram.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getHoje() / 60), String.valueOf(tempoClass.get(i).getHoje() % 60)));
-                            txtMesInstagram.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getMes() / 60), String.valueOf(tempoClass.get(i).getMes() % 60)));
-                            txtTotalInstagram.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getTotal() / 60), String.valueOf(tempoClass.get(i).getTotal() % 60)));
-                            totalHoje = totalHoje + tempoClass.get(i).getHoje();
-                            totalMes = totalMes + tempoClass.get(i).getMes();
-                            totalGeral = totalGeral + tempoClass.get(i).getTotal();
-                            break;
+                    case 2:
+                        txtHojeInstagram.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getHoje() / 3600), String.valueOf((redesSociaisClass.get(i).getHoje() % 3600) / 60)));
+                        txtMesInstagram.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getMes() / 3600), String.valueOf((redesSociaisClass.get(i).getMes() % 3600) / 60)));
+                        txtTotalInstagram.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getTotal() / 3600), String.valueOf((redesSociaisClass.get(i).getTotal() % 3600) / 60)));
+                        totalHoje = totalHoje + redesSociaisClass.get(i).getHoje();
+                        totalMes = totalMes + redesSociaisClass.get(i).getMes();
+                        totalGeral = totalGeral + redesSociaisClass.get(i).getTotal();
+                        break;
 
-                        case 3:
-                            txtHojeLinkedin.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getHoje() / 60), String.valueOf(tempoClass.get(i).getHoje() % 60)));
-                            txtMesLinkedin.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getMes() / 60), String.valueOf(tempoClass.get(i).getMes() % 60)));
-                            txtTotalLinkedin.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getTotal() / 60), String.valueOf(tempoClass.get(i).getTotal() % 60)));
-                            totalHoje = totalHoje + tempoClass.get(i).getHoje();
-                            totalMes = totalMes + tempoClass.get(i).getMes();
-                            totalGeral = totalGeral + tempoClass.get(i).getTotal();
-                            break;
+                    case 3:
+                        txtHojeLinkedin.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getHoje() / 3600), String.valueOf((redesSociaisClass.get(i).getHoje() % 3600) / 60)));
+                        txtMesLinkedin.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getMes() / 3600), String.valueOf((redesSociaisClass.get(i).getMes() % 3600) / 60)));
+                        txtTotalLinkedin.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getTotal() / 3600), String.valueOf((redesSociaisClass.get(i).getTotal() % 3600) / 60)));
+                        totalHoje = totalHoje + redesSociaisClass.get(i).getHoje();
+                        totalMes = totalMes + redesSociaisClass.get(i).getMes();
+                        totalGeral = totalGeral + redesSociaisClass.get(i).getTotal();
+                        break;
 
-                        case 4:
-                            txtHojeTwitter.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getHoje() / 60), String.valueOf(tempoClass.get(i).getHoje() % 60)));
-                            txtMesTwitter.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getMes() / 60), String.valueOf(tempoClass.get(i).getMes() % 60)));
-                            txtTotalTwitter.setText(getString(R.string.resultado, String.valueOf(tempoClass.get(i).getTotal() / 60), String.valueOf(tempoClass.get(i).getTotal() % 60)));
-                            totalHoje = totalHoje + tempoClass.get(i).getHoje();
-                            totalMes = totalMes + tempoClass.get(i).getMes();
-                            totalGeral = totalGeral + tempoClass.get(i).getTotal();
-                            break;
-                    }
+                    case 4:
+                        txtHojeTwitter.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getHoje() / 3600), String.valueOf((redesSociaisClass.get(i).getHoje() % 3600) / 60)));
+                        txtMesTwitter.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getMes() / 3600), String.valueOf((redesSociaisClass.get(i).getMes() % 3600) / 60)));
+                        txtTotalTwitter.setText(getString(R.string.resultado, String.valueOf(redesSociaisClass.get(i).getTotal() / 3600), String.valueOf((redesSociaisClass.get(i).getTotal() % 3600) / 60)));
+                        totalHoje = totalHoje + redesSociaisClass.get(i).getHoje();
+                        totalMes = totalMes + redesSociaisClass.get(i).getMes();
+                        totalGeral = totalGeral + redesSociaisClass.get(i).getTotal();
+                        break;
                 }
             }
 
-            txtTotalHoje.setText(getString(R.string.resultado, String.valueOf(totalHoje / 60), String.valueOf(totalHoje % 60)));
-            txtTotalMes.setText(getString(R.string.resultado, String.valueOf(totalMes / 60), String.valueOf(totalMes % 60)));
-            txtTotalGeral.setText(getString(R.string.resultado, String.valueOf(totalGeral / 60), String.valueOf(totalGeral % 60)));
+            txtTotalHoje.setText(getString(R.string.resultado, String.valueOf(totalHoje / 3600), String.valueOf((totalHoje % 3600) / 60)));
+            txtTotalMes.setText(getString(R.string.resultado, String.valueOf(totalMes / 3600), String.valueOf((totalMes % 3600) / 60)));
+            txtTotalGeral.setText(getString(R.string.resultado, String.valueOf(totalGeral / 3600), String.valueOf((totalGeral % 3600) / 60)));
 
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(this, erro);
@@ -132,6 +132,17 @@ public class HistoricoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        carregarDados();
+
+        if (controlarOnResume) {
+            controlarOnResume = false;
+            carregarDados();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        controlarOnResume = true;
     }
 }

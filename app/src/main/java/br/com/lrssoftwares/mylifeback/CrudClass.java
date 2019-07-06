@@ -29,15 +29,14 @@ class CrudClass {
             do {
                 RedesSociaisClass redesSociaisClass = new RedesSociaisClass();
                 redesSociaisClass.setId(cursor.getInt(0));
-                redesSociaisClass.setNome(cursor.getString(1));
-                //redesSociaisClass.setDia(cursor.getDate(2));
-
+                // redesSociaisClass.setNome(cursor.getString(1));
+                redesSociaisClass.setDiaAtual(cursor.getString(2));
                 redesSociaisClass.setHoje(cursor.getInt(3));
                 redesSociaisClass.setMes(cursor.getInt(4));
                 redesSociaisClass.setTotal(cursor.getInt(5));
                 redesSociaisClass.setAlertaAtivo(cursor.getInt(6));
                 redesSociaisClass.setTempoAlerta(cursor.getInt(7));
-                //redesSociaisClass.setUltimoAlerta(cursor.getInt(9));
+                redesSociaisClass.setNotificouHoje(cursor.getInt(8));
                 lista.add(redesSociaisClass);
 
             } while (cursor.moveToNext());
@@ -53,10 +52,46 @@ class CrudClass {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
-        valores.put("tempoAlerta", redesSociaisClass.getTempoAlerta());
+        valores.put("id", redesSociaisClass.getId());
         valores.put("alertaAtivo", redesSociaisClass.getAlertaAtivo());
+        valores.put("tempoAlerta", redesSociaisClass.getTempoAlerta());
 
         sqLiteDatabase.update("redessociais", valores, "id = ?", new String[]{"" + redesSociaisClass.getId()});
+        sqLiteDatabase.close();
+    }
+
+    void atualizarRedeSocialTempo(RedesSociaisClass redesSociaisClass) {
+        sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
+
+        ContentValues valores = new ContentValues();
+        valores.put("id", redesSociaisClass.getId());
+        valores.put("diaAtual", redesSociaisClass.getDiaAtual());
+        valores.put("hoje", redesSociaisClass.getHoje());
+        valores.put("mes", redesSociaisClass.getMes());
+        valores.put("total", redesSociaisClass.getTotal());
+
+        sqLiteDatabase.update("redessociais", valores, "id = ?", new String[]{"" + redesSociaisClass.getId()});
+        sqLiteDatabase.close();
+    }
+
+    void atualizarDataHoje(String dataAtual) {
+        sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
+
+        ContentValues valores = new ContentValues();
+        valores.put("hoje", 0);
+        valores.put("diaAtual", dataAtual);
+
+        sqLiteDatabase.update("redessociais", valores, null, null);
+        sqLiteDatabase.close();
+    }
+
+    void desativarAlerta() {
+        sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
+
+        ContentValues valores = new ContentValues();
+        valores.put("alertaAtivo", 0);
+
+        sqLiteDatabase.update("redessociais", valores, null, null);
         sqLiteDatabase.close();
     }
 }
