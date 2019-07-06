@@ -1,26 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tlPrincipal"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="3dp"
-        app:tabMode="fixed"
-        app:tabIndicatorColor="@color/colorWhite"
-        app:tabSelectedTextColor="@color/colorWhite"
-        app:tabTextColor="@color/colorWhiteOpacity"
-        tools:targetApi="lollipop" />
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpPrincipal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginBottom="12sp"
+            android:gravity="center"
+            android:text="@string/instrucoes"
+            android:textColor="@color/colorBlack" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="8sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgFacebook"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:contentDescription="@string/facebook"
+                android:src="@drawable/facebook_icone" />
+
+            <Switch
+                android:id="@+id/swtFacebook"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:checked="false"
+                android:text="@string/facebook" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="-6sp"
+                    android:text="@string/alerta"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/txtAlertaFacebook"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginRight="10sp"
+                    android:hint="@string/hint_minutos"
+                    android:inputType="number"
+                    android:scrollbars="vertical"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="8sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgInstagram"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:contentDescription="@string/instagram"
+                android:src="@drawable/instagram_icone" />
+
+            <Switch
+                android:id="@+id/swtInstagram"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:checked="false"
+                android:text="@string/instagram" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="-6sp"
+                    android:text="@string/alerta"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/txtAlertaInstagram"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginRight="10sp"
+                    android:hint="@string/hint_minutos"
+                    android:inputType="number"
+                    android:scrollbars="vertical"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="8sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgLinkedin"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:contentDescription="@string/linkedin"
+                android:src="@drawable/linkedin_icone" />
+
+            <Switch
+                android:id="@+id/swtLinkedin"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:checked="false"
+                android:text="@string/linkedin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="-6sp"
+                    android:text="@string/alerta"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/txtAlertaLinkedin"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginRight="10sp"
+                    android:hint="@string/hint_minutos"
+                    android:inputType="number"
+                    android:scrollbars="vertical"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="8sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgTwitter"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:contentDescription="@string/twitter"
+                android:src="@drawable/twitter_icone" />
+
+            <Switch
+                android:id="@+id/swtTwitter"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10sp"
+                android:layout_marginRight="10sp"
+                android:checked="false"
+                android:text="@string/twitter" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="-6sp"
+                    android:text="@string/alerta"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/txtAlertaTwitter"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginRight="10sp"
+                    android:hint="@string/hint_minutos"
+                    android:inputType="number"
+                    android:scrollbars="vertical"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:background="@android:color/darker_gray" />
+
+        <Button
+            android:id="@+id/btnSalvar"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="8sp"
+            android:text="@string/botao_cadastrar" />
+
+    </LinearLayout>
+</ScrollView>
+
+

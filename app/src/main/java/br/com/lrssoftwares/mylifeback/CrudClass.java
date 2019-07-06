@@ -16,12 +16,12 @@ class CrudClass {
         baseDadosSQLiteOpenHelper = new SQLiteOpenHelper(contexto);
     }
 
-    List<RedesSociaisClass> listarRedesSociais(int dia) {
+    List<RedesSociaisClass> listarRedesSociais() {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
         List<RedesSociaisClass> lista = new ArrayList<>();
 
-        Cursor cursor = sqLiteDatabase.query("redessociais", null, "dia = ?", new String[]{"" + dia}, null, null, "id COLLATE NOCASE ASC;");
+        Cursor cursor = sqLiteDatabase.query("redessociais", null, null, null, null, null, "id COLLATE NOCASE ASC;");
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -29,10 +29,15 @@ class CrudClass {
             do {
                 RedesSociaisClass redesSociaisClass = new RedesSociaisClass();
                 redesSociaisClass.setId(cursor.getInt(0));
-                // redesSociaisClass.setNome(cursor.getString(1));
-                redesSociaisClass.setDia(cursor.getInt(2));
-                redesSociaisClass.setTempo(cursor.getString(3));
-                redesSociaisClass.setAtivo(cursor.getInt(4));
+                redesSociaisClass.setNome(cursor.getString(1));
+                //redesSociaisClass.setDia(cursor.getDate(2));
+
+                redesSociaisClass.setHoje(cursor.getInt(3));
+                redesSociaisClass.setMes(cursor.getInt(4));
+                redesSociaisClass.setTotal(cursor.getInt(5));
+                redesSociaisClass.setAlertaAtivo(cursor.getInt(6));
+                redesSociaisClass.setTempoAlerta(cursor.getInt(7));
+                //redesSociaisClass.setUltimoAlerta(cursor.getInt(9));
                 lista.add(redesSociaisClass);
 
             } while (cursor.moveToNext());
@@ -43,16 +48,15 @@ class CrudClass {
 
         return lista;
     }
-    //endregion
 
     void atualizarRedeSocial(RedesSociaisClass redesSociaisClass) {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
-        valores.put("tempo", redesSociaisClass.getTempo());
-        valores.put("ativo", redesSociaisClass.getAtivo());
+        valores.put("tempoAlerta", redesSociaisClass.getTempoAlerta());
+        valores.put("alertaAtivo", redesSociaisClass.getAlertaAtivo());
 
-        sqLiteDatabase.update("redessociais", valores, "id = ? and dia = ?", new String[]{"" + redesSociaisClass.getId(), "" + redesSociaisClass.getDia()});
+        sqLiteDatabase.update("redessociais", valores, "id = ?", new String[]{"" + redesSociaisClass.getId()});
         sqLiteDatabase.close();
     }
 }

@@ -35,7 +35,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
         CardView cvConfiguracoes = findViewById(R.id.cvConfiguracoes);
         cvConfiguracoes.setOnClickListener(view -> {
-            Intent intentMonitoramento = new Intent(PrincipalActivity.this, ConfiguracoesTabsActivity.class);
+            Intent intentMonitoramento = new Intent(PrincipalActivity.this, ConfiguracoesActivity.class);
             startActivity(intentMonitoramento);
         });
 

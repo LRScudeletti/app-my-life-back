@@ -13,13 +13,14 @@ import android.support.v4.content.ContextCompat;
 
 import com.rvalerio.fgchecker.AppChecker;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MonitorService extends Service {
     public static boolean servicoExecutando = false;
     Handler handler = new Handler();
 
-    int contador = 0;
+    int intervalo = 10;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -93,7 +94,7 @@ public class MonitorService extends Service {
         public void run() {
             if (servicoExecutando) {
                 verificarProcessosRedesSociais();
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, intervalo * 1000);
             } else {
                 handler.removeCallbacks(this);
             }
@@ -101,30 +102,41 @@ public class MonitorService extends Service {
     };
 
     private void verificarProcessosRedesSociais() {
-        AppChecker appChecker = new AppChecker();
-        String packageName = appChecker.getForegroundApp(getApplicationContext());
+        try {
+            AppChecker appChecker = new AppChecker();
+            String packageName = appChecker.getForegroundApp(getApplicationContext());
 
-        switch (packageName) {
-            case "com.facebook.katana":
-            case "com.facebook.lite": {
-                contador++;
-                break;
-            }
-            case "com.instagram.android": {
-                break;
-            }
-            case "com.linkedin.android":
-            case "com.linkedin.android.lite": {
-                break;
-            }
-            case "com.twitter.android":
-            case "com.twitter.android.lite": {
-                break;
-            }
-        }
+            CrudClass crudClass = new CrudClass(getApplication());
+            List<RedesSociaisClass> redesSociaisClass = crudClass.listarRedesSociais();
 
-        if (contador == 2) {
-            ExibirNotificacao(2, getString(R.string.notificacao_alerta, getString(R.string.facebook)), getString(R.string.tempo_excedido));
+            switch (packageName) {
+                case "com.facebook.katana":
+                case "com.facebook.lite": {
+
+                    ExibirNotificacao(2, getString(R.string.notificacao_alerta, getString(R.string.facebook)), getString(R.string.tempo_excedido));
+
+                    break;
+                }
+                case "com.instagram.android": {
+
+                    break;
+                }
+                case "com.linkedin.android":
+                case "com.linkedin.android.lite": {
+
+                    break;
+                }
+                case "com.twitter.android":
+                case "com.twitter.android.lite": {
+                    //tempoClassNovo.setId(4);
+                    //tempoClassNovo.setHoje(tempoClass.get(0).getHoje() + intervalo);
+
+                    break;
+                }
+            }
+
+        } catch (Exception erro) {
+            new UtilidadesClass().enviarMensagemContato(getApplicationContext(), erro);
         }
     }
 }

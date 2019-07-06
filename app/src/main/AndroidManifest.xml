@@ -41,7 +41,7 @@
         <activity
             android:name=".PrincipalActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ConfiguracoesTabsActivity" />
+        <activity android:name=".ConfiguracoesActivity" />
         <activity android:name=".ContatoActivity" />
         <activity android:name=".SobreActivity" />
         <activity android:name=".HistoricoActivity" />

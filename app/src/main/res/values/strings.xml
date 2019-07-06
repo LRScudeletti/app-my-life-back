@@ -19,31 +19,6 @@
     <string name="configurar_monitoramento">Settings</string>
     <string name="visualizar_historico">View History</string>
 
-    <!-- MENU OPÇÕES -->
-    <string name="copiar_configuracoes">Copy Settings</string>
-    <string name="copiar_configuracoes_para">Copy settings to</string>
-    <string name="botao_copiar">Copy</string>
-    <string name="configuracoes_copiadas_sucesso">Settings copied successfully.</string>
-
-    <!-- TABS -->
-    <string name="domingo">S</string>
-    <string name="segunda">M</string>
-    <string name="terca">T</string>
-    <string name="quarta">W</string>
-    <string name="quinta">T</string>
-    <string name="sexta">F</string>
-    <string name="sabado">S</string>
-
-    <string-array name="array_dias">
-        <item>Sunday</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-    </string-array>
-
     <!-- CONFIGURAR MONITORAMENTO -->
     <string name="tela_configuracoes">Settings</string>
     <string name="facebook">Facebook</string>
@@ -58,6 +33,15 @@
 
     <!-- VISUALIZAR HISTORICO -->
     <string name="tela_historico">History</string>
+    <string name="facebook_uso">Facebook - Time of use</string>
+    <string name="instagram_uso">Instagram - Time of use</string>
+    <string name="linkedin_uso">Linkedin - Time of use</string>
+    <string name="twitter_uso">Twitter - Time of use</string>
+    <string name="total_uso">Total use time</string>
+    <string name="hoje">Today:</string>
+    <string name="mes">This month:</string>
+    <string name="total">Total:</string>
+    <string name="resultado">%1$s hour(s) and %2$s minutes(s)</string>
 
     <!-- VALIDAÇÕES GERAIS -->
     <string name="preencha_campos">Please fill in all the fields.</string>
