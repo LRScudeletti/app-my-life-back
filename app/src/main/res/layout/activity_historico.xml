@@ -427,6 +427,7 @@
             android:id="@+id/cvTwitter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
             android:layout_gravity="center"
             android:layout_marginTop="5sp"
             android:clickable="true"
@@ -560,6 +561,7 @@
 
         </android.support.v7.widget.CardView>
 
+        <!--
         <android.support.v7.widget.CardView
             android:id="@+id/cvTotal"
             android:layout_width="match_parent"
@@ -697,6 +699,7 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+        -->
 
     </LinearLayout>
 

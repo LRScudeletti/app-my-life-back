@@ -2,7 +2,8 @@ package br.com.lrssoftwares.mylifeback;
 
 class RedesSociaisClass {
     private int id;
-    private String diaAtual;
+    private int diaAtual;
+    private int mesAtual;
     private int hoje;
     private int mes;
     private int total;
@@ -19,12 +20,20 @@ class RedesSociaisClass {
         this.id = id;
     }
 
-    String getDiaAtual() {
+    int getDiaAtual() {
         return diaAtual;
     }
 
-    void setDiaAtual(String diaAtual) {
+    void setDiaAtual(int diaAtual) {
         this.diaAtual = diaAtual;
+    }
+
+    public int getMesAtual() {
+        return mesAtual;
+    }
+
+    public void setMesAtual(int mesAtual) {
+        this.mesAtual = mesAtual;
     }
 
     int getHoje() {

@@ -30,13 +30,14 @@ class CrudClass {
                 RedesSociaisClass redesSociaisClass = new RedesSociaisClass();
                 redesSociaisClass.setId(cursor.getInt(0));
                 // redesSociaisClass.setNome(cursor.getString(1));
-                redesSociaisClass.setDiaAtual(cursor.getString(2));
-                redesSociaisClass.setHoje(cursor.getInt(3));
-                redesSociaisClass.setMes(cursor.getInt(4));
-                redesSociaisClass.setTotal(cursor.getInt(5));
-                redesSociaisClass.setAlertaAtivo(cursor.getInt(6));
-                redesSociaisClass.setTempoAlerta(cursor.getInt(7));
-                redesSociaisClass.setNotificouHoje(cursor.getInt(8));
+                redesSociaisClass.setDiaAtual(cursor.getInt(2));
+                redesSociaisClass.setMesAtual(cursor.getInt(3));
+                redesSociaisClass.setHoje(cursor.getInt(4));
+                redesSociaisClass.setMes(cursor.getInt(5));
+                redesSociaisClass.setTotal(cursor.getInt(6));
+                redesSociaisClass.setAlertaAtivo(cursor.getInt(7));
+                redesSociaisClass.setTempoAlerta(cursor.getInt(8));
+                redesSociaisClass.setNotificouHoje(cursor.getInt(9));
                 lista.add(redesSociaisClass);
 
             } while (cursor.moveToNext());
@@ -65,31 +66,35 @@ class CrudClass {
 
         ContentValues valores = new ContentValues();
         valores.put("id", redesSociaisClass.getId());
-        valores.put("diaAtual", redesSociaisClass.getDiaAtual());
         valores.put("hoje", redesSociaisClass.getHoje());
         valores.put("mes", redesSociaisClass.getMes());
         valores.put("total", redesSociaisClass.getTotal());
+
+        if (redesSociaisClass.getNotificouHoje() == 1)
+            valores.put("notificouHoje", redesSociaisClass.getNotificouHoje());
 
         sqLiteDatabase.update("redessociais", valores, "id = ?", new String[]{"" + redesSociaisClass.getId()});
         sqLiteDatabase.close();
     }
 
-    void atualizarDataHoje(String dataAtual) {
+    void atualizarDiaAtual(int diaAtual) {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
         valores.put("hoje", 0);
-        valores.put("diaAtual", dataAtual);
+        valores.put("diaAtual", diaAtual);
+        valores.put("notificouHoje", 0);
 
         sqLiteDatabase.update("redessociais", valores, null, null);
         sqLiteDatabase.close();
     }
 
-    void desativarAlerta() {
+    void atualizarMesAtual(int mesAtual) {
         sqLiteDatabase = baseDadosSQLiteOpenHelper.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
-        valores.put("alertaAtivo", 0);
+        valores.put("mes", 0);
+        valores.put("mesAtual", mesAtual);
 
         sqLiteDatabase.update("redessociais", valores, null, null);
         sqLiteDatabase.close();

@@ -46,7 +46,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:contentDescription="@string/facebook"
-                android:src="@drawable/facebook_icone" />
+                android:src="@drawable/facebook_icone"
+                tools:ignore="RtlHardcoded" />
 
             <Switch
                 android:id="@+id/swtFacebook"
@@ -55,7 +56,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:checked="false"
-                android:text="@string/facebook" />
+                android:text="@string/facebook"
+                tools:ignore="RtlHardcoded" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,19 +70,20 @@
                     android:layout_marginStart="5sp"
                     android:layout_marginLeft="5sp"
                     android:layout_marginBottom="-6sp"
-                    android:text="@string/alerta"
-                    android:textSize="12sp" />
+                    android:text="@string/tempo_uso_diario"
+                    android:textSize="12sp"
+                    tools:ignore="RtlHardcoded" />
 
                 <EditText
                     android:id="@+id/txtAlertaFacebook"
-                    android:layout_width="70sp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10sp"
                     android:layout_marginRight="10sp"
                     android:hint="@string/hint_minutos"
                     android:inputType="number"
                     android:scrollbars="vertical"
-                    tools:ignore="Autofill" />
+                    tools:ignore="Autofill,RtlHardcoded" />
 
             </LinearLayout>
 
@@ -111,7 +114,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:contentDescription="@string/instagram"
-                android:src="@drawable/instagram_icone" />
+                android:src="@drawable/instagram_icone"
+                tools:ignore="RtlHardcoded" />
 
             <Switch
                 android:id="@+id/swtInstagram"
@@ -120,7 +124,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:checked="false"
-                android:text="@string/instagram" />
+                android:text="@string/instagram"
+                tools:ignore="RtlHardcoded" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,19 +138,20 @@
                     android:layout_marginStart="5sp"
                     android:layout_marginLeft="5sp"
                     android:layout_marginBottom="-6sp"
-                    android:text="@string/alerta"
-                    android:textSize="12sp" />
+                    android:text="@string/tempo_uso_diario"
+                    android:textSize="12sp"
+                    tools:ignore="RtlHardcoded" />
 
                 <EditText
                     android:id="@+id/txtAlertaInstagram"
-                    android:layout_width="70sp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10sp"
                     android:layout_marginRight="10sp"
                     android:hint="@string/hint_minutos"
                     android:inputType="number"
                     android:scrollbars="vertical"
-                    tools:ignore="Autofill" />
+                    tools:ignore="Autofill,RtlHardcoded" />
 
             </LinearLayout>
 
@@ -176,7 +182,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:contentDescription="@string/linkedin"
-                android:src="@drawable/linkedin_icone" />
+                android:src="@drawable/linkedin_icone"
+                tools:ignore="RtlHardcoded" />
 
             <Switch
                 android:id="@+id/swtLinkedin"
@@ -185,7 +192,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:checked="false"
-                android:text="@string/linkedin" />
+                android:text="@string/linkedin"
+                tools:ignore="RtlHardcoded" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -198,19 +206,20 @@
                     android:layout_marginStart="5sp"
                     android:layout_marginLeft="5sp"
                     android:layout_marginBottom="-6sp"
-                    android:text="@string/alerta"
-                    android:textSize="12sp" />
+                    android:text="@string/tempo_uso_diario"
+                    android:textSize="12sp"
+                    tools:ignore="RtlHardcoded" />
 
                 <EditText
                     android:id="@+id/txtAlertaLinkedin"
-                    android:layout_width="70sp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10sp"
                     android:layout_marginRight="10sp"
                     android:hint="@string/hint_minutos"
                     android:inputType="number"
                     android:scrollbars="vertical"
-                    tools:ignore="Autofill" />
+                    tools:ignore="Autofill,RtlHardcoded" />
 
             </LinearLayout>
 
@@ -241,7 +250,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:contentDescription="@string/twitter"
-                android:src="@drawable/twitter_icone" />
+                android:src="@drawable/twitter_icone"
+                tools:ignore="RtlHardcoded" />
 
             <Switch
                 android:id="@+id/swtTwitter"
@@ -250,7 +260,8 @@
                 android:layout_marginEnd="10sp"
                 android:layout_marginRight="10sp"
                 android:checked="false"
-                android:text="@string/twitter" />
+                android:text="@string/twitter"
+                tools:ignore="RtlHardcoded" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -263,19 +274,20 @@
                     android:layout_marginStart="5sp"
                     android:layout_marginLeft="5sp"
                     android:layout_marginBottom="-6sp"
-                    android:text="@string/alerta"
-                    android:textSize="12sp" />
+                    android:text="@string/tempo_uso_diario"
+                    android:textSize="12sp"
+                    tools:ignore="RtlHardcoded" />
 
                 <EditText
                     android:id="@+id/txtAlertaTwitter"
-                    android:layout_width="70sp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10sp"
                     android:layout_marginRight="10sp"
                     android:hint="@string/hint_minutos"
                     android:inputType="number"
                     android:scrollbars="vertical"
-                    tools:ignore="Autofill" />
+                    tools:ignore="Autofill,RtlHardcoded" />
 
             </LinearLayout>
 
@@ -305,7 +317,7 @@
             android:layout_marginStart="20sp"
             android:layout_marginEnd="20sp"
             android:layout_marginBottom="8sp"
-            android:text="@string/botao_cadastrar" />
+            android:text="@string/botao_iniciar" />
 
     </LinearLayout>
 </ScrollView>

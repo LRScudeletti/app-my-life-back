@@ -1,49 +1,62 @@
 package br.com.lrssoftwares.mylifeback;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.rvalerio.fgchecker.AppChecker;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class MonitorService extends Service {
-    public static boolean servicoExecutando = false;
-    Handler handler = new Handler();
+    public static boolean servicoExecutando;
 
+    Handler handler = new Handler();
     int intervalo = 10;
+
+    public static AlarmManager alarmManager;
+    public static PendingIntent pendingIntent;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        Intent intent = new Intent(this, MonitorService.class);
+        pendingIntent = PendingIntent.getService(this, 0, intent, 0);
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Date now = new Date();
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, now.getTime(), 60000, pendingIntent);
+
+        servicoExecutando = false;
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && Objects.requireNonNull(intent.getAction()).equals("Monitor")) {
-            if (!servicoExecutando) {
-                ExibirNotificacao(1, getString(R.string.monitor), getString(R.string.historico_detalhes));
-                handler.post(runnableCode);
-                servicoExecutando = true;
-            }
+        if (servicoExecutando) {
+            return Service.START_STICKY;
+        } else {
+            ExibirNotificacao(1, getString(R.string.monitor), getString(R.string.historico_detalhes));
+            handler.post(runnableCode);
+            servicoExecutando = true;
         }
-        return START_STICKY;
+        return Service.START_STICKY;
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        servicoExecutando = false;
     }
 
     private void ExibirNotificacao(int notificationId, String titulo, String mensagem) {
@@ -54,7 +67,7 @@ public class MonitorService extends Service {
             String idCanal = "1";
             String nomeCanal = "Monitor";
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel canal = new NotificationChannel(idCanal, nomeCanal, NotificationManager.IMPORTANCE_HIGH);
                 notificationManager.createNotificationChannel(canal);
             }
@@ -66,6 +79,7 @@ public class MonitorService extends Service {
             notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), idCanal)
                     .setSmallIcon(R.drawable.notificacao_icone)
                     .setContentTitle(titulo)
+                    .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .addAction(notificationId == 1 ? R.drawable.fechar_icone : R.drawable.ok_icone,
                             notificationId == 1 ? getString(R.string.parar_servico) : getString(R.string.ok_notificação),
                             removerNotificacao)
@@ -73,13 +87,6 @@ public class MonitorService extends Service {
                     .setStyle(new NotificationCompat.BigTextStyle().bigText(mensagem))
                     .setContentText(mensagem)
                     .setOngoing(notificationId == 1);
-
-            //Intent intent = new Intent();
-
-            //TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-            //stackBuilder.addNextIntent(intent);
-            //PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-            //mBuilder.setContentIntent(resultPendingIntent);
 
             if (notificationId == 1)
                 startForeground(notificationId, notificationBuilder.build());
@@ -111,7 +118,7 @@ public class MonitorService extends Service {
             List<RedesSociaisClass> redesSociaisClass = crudClass.listarRedesSociais();
             RedesSociaisClass redesSociaisClassAtualizar = new RedesSociaisClass();
 
-            // verificarData(redesSociaisClass);
+            verificarData(redesSociaisClass);
 
             switch (packageName) {
                 case "com.facebook.katana":
@@ -176,16 +183,31 @@ public class MonitorService extends Service {
 
     private void verificarData(List<RedesSociaisClass> redesSociaisClass) {
         try {
-            Calendar dia = Calendar.getInstance();
+            Calendar calendar = Calendar.getInstance();
 
-            if (!dia.toString().equals(redesSociaisClass.get(0).getDiaAtual())) {
+            int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+            // Mais 1 é necessário porque Janeiro é igual a 0 no Calendar
+            int mes = calendar.get(Calendar.MONTH) + 1;
+
+            if (dia != redesSociaisClass.get(0).getDiaAtual()) {
                 CrudClass crudClass = new CrudClass(getApplication());
-                crudClass.atualizarDataHoje(dia.toString());
+                crudClass.atualizarDiaAtual(dia);
+            }
+
+            if (mes != redesSociaisClass.get(0).getMesAtual()) {
+                CrudClass crudClass = new CrudClass(getApplication());
+                crudClass.atualizarMesAtual(mes);
             }
 
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(getApplicationContext(), erro);
-
         }
     }
+
+    public static void pararAlarme() {
+        alarmManager.cancel(pendingIntent);
+        servicoExecutando = false;
+    }
 }
+

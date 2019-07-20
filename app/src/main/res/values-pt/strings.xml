@@ -25,12 +25,14 @@
     <string name="instagram">Instagram</string>
     <string name="linkedin">Linkedin</string>
     <string name="twitter">Twitter</string>
-    <string name="alerta">Alerta (m)</string>
+    <string name="tempo_uso_diario">Tempo de uso diário</string>
     <string name="hint_minutos">ex. 60</string>
-    <string name="botao_cadastrar">Salvar</string>
-    <string name="configuracoes_sucesso">Configurações salvas com sucesso.</string>
-    <string name="instrucoes">Ative as redes sociais que deseja monitorar e se necessário configure um alerta diário para ser notificado quando o tempo for ultrapassado.</string>
-    <string name="alerta_dica">* Por favor, informe o alerta em minutos.</string>
+    <string name="botao_iniciar">Iniciar</string>
+    <string name="botao_parar">Parar</string>
+    <string name="monitoramento_iniciado">As configurações foram salvas e o My Life Back foi iniciado com sucesso.</string>
+    <string name="monitoramento_parado">O My Life Back foi encerrado com sucesso.</string>
+    <string name="instrucoes">Ative as redes sociais para receber um alerta quando o tempo de uso diário informado for ultrapassado.</string>
+    <string name="alerta_dica">* Por favor, informe o tempo de uso diário em minutos.</string>
 
     <!-- VISUALIZAR HISTORICO -->
     <string name="tela_historico">Histórico</string>
@@ -51,7 +53,7 @@
     <string name="permissao_cancelada">Para continuar, é necessário habilitar a permissão.</string>
 
     <!-- NOTIFICAÇÃO -->
-    <string name="monitor">Monitoramento Ativado</string>
+    <string name="monitor">My Life Back Ativado</string>
     <string name="notificacao_alerta">Alerta do %1$s</string>
     <string name="historico_detalhes">Acesse o histórico do app para mais detalhes.</string>
     <string name="parar_servico">Parar</string>

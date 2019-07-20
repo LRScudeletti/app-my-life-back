@@ -32,6 +32,8 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     EditText txtAlertaLinkedin;
     EditText txtAlertaTwitter;
 
+    Button btnSalvar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,32 +59,43 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         txtAlertaTwitter = findViewById(R.id.txtAlertaTwitter);
 
         // Botão que inicia o serviço de monitoramento
-        Button btnSalvar = findViewById(R.id.btnSalvar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnSalvar.setText(MonitorService.servicoExecutando ? getText(R.string.botao_parar) : getText(R.string.botao_iniciar));
         btnSalvar.setOnClickListener(v -> {
-            if (!hasUsageStatsPermission(this)) {
-                AlertDialog.Builder dialogPermissao = new AlertDialog.Builder(this);
-                TextView mensagem = new TextView(this);
-                mensagem.setText(getString(R.string.habilitar_permissao));
-                mensagem.setGravity(Gravity.CENTER_HORIZONTAL);
-                mensagem.setTextSize(14);
-                mensagem.setPadding(50, 40, 50, 5);
-                mensagem.setTextColor(getResources().getColor(R.color.colorBlack));
-                dialogPermissao.setView(mensagem)
-                        .setPositiveButton(R.string.botao_ok, (dialog, id) -> {
-                            controlarOnResume = true;
-                            verificarPermissao();
-                        })
-                        .setNegativeButton(R.string.botao_cancelar, (dialog, id) -> {
+            if (!MonitorService.servicoExecutando) {
+                if (!hasUsageStatsPermission(this)) {
+                    AlertDialog.Builder dialogPermissao = new AlertDialog.Builder(this);
+                    TextView mensagem = new TextView(this);
+                    mensagem.setText(getString(R.string.habilitar_permissao));
+                    mensagem.setGravity(Gravity.CENTER_HORIZONTAL);
+                    mensagem.setTextSize(14);
+                    mensagem.setPadding(50, 40, 50, 5);
+                    mensagem.setTextColor(getResources().getColor(R.color.colorBlack));
+                    dialogPermissao.setView(mensagem)
+                            .setPositiveButton(R.string.botao_ok, (dialog, id) -> {
+                                controlarOnResume = true;
+                                verificarPermissao();
+                            })
+                            .setNegativeButton(R.string.botao_cancelar, (dialog, id) -> {
 
-                        });
+                            });
 
-                dialogPermissao.create();
-                dialogPermissao.show();
-            } else if (hasUsageStatsPermission(this)) {
-                atualizarDados();
-
-                if (verificarChecks())
+                    dialogPermissao.create();
+                    dialogPermissao.show();
+                } else if (hasUsageStatsPermission(this)) {
+                    atualizarDados();
+                    btnSalvar.setText(getText(R.string.botao_parar));
+                    Snackbar.make(findViewById(android.R.id.content), getString(R.string.monitoramento_iniciado), Snackbar.LENGTH_LONG).setAction("", null).show();
                     chamarServico();
+                }
+            } else {
+                btnSalvar.setText(getText(R.string.botao_iniciar));
+                Snackbar.make(findViewById(android.R.id.content), getString(R.string.monitoramento_parado), Snackbar.LENGTH_LONG).setAction("", null).show();
+
+                MonitorService.pararAlarme();
+
+                Intent service = new Intent(this, MonitorService.class);
+                this.stopService(service);
             }
         });
 
@@ -101,10 +114,9 @@ public class ConfiguracoesActivity extends AppCompatActivity {
             controlarOnResume = false;
 
             atualizarDados();
-
-            if (verificarChecks())
-                chamarServico();
-
+            btnSalvar.setText(getText(R.string.botao_parar));
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.monitoramento_iniciado), Snackbar.LENGTH_LONG).setAction("", null).show();
+            chamarServico();
         } else if (!hasUsageStatsPermission(this) && controlarOnResume) {
             Snackbar.make(findViewById(android.R.id.content), getString(R.string.permissao_cancelada), Snackbar.LENGTH_LONG).setAction("", null).show();
         }
@@ -158,9 +170,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 }
                 crudClass.atualizarRedeSocial(redesSociaisClass);
             }
-
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.configuracoes_sucesso), Snackbar.LENGTH_LONG).setAction("", null).show();
-
         } catch (Exception erro) {
             new UtilidadesClass().enviarMensagemContato(this, erro);
         }
@@ -176,9 +185,5 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         Intent startIntent = new Intent(this, MonitorService.class);
         startIntent.setAction("Monitor");
         startService(startIntent);
-    }
-
-    private boolean verificarChecks() {
-        return swtFacebook.isChecked() || swtInstagram.isChecked() || swtLinkedin.isChecked() || swtTwitter.isChecked();
     }
 }
